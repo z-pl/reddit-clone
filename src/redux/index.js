@@ -1,43 +1,25 @@
 import { configureStore, applyMiddleware } from "@reduxjs/toolkit";
+import { connect, useSelector, useDispatch } from "react-redux";
+
 import thunk from "redux-thunk";
 
-export function increment() {
-  return {
-    type: "INCREMENT"
-  }
-}
-
-export function FETCH_INIT_STATE() {
-  return (dispatch, getState) => {
-    console.log("ping")
-    const number = getState();
-    const baseUrl = `https://www.reddit.com/r/popular.json`;
-    fetch(baseUrl)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        dispatch({type: "FETCH_INIT_STATE", data})
-      })
-
-  }
-}
+import countReducer from "./count";
+import loadingReducer from "./loading";
+import redditReducer from "./redditAPI";
 
 
-function reducer(count = 0, action) {
-  switch(action.type) {
-    case "INCREMENT":
-      return count + 1
-    default:
-      return count
-  }
-}
+import { fetchInitPosts } from "./redditAPI";
 
 const store = configureStore(
   {
-    reducer,
+    reducer: {
+      count: countReducer,
+      loading: loadingReducer,
+      reddit: redditReducer
+    },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk)
   }
 )
 store.subscribe(() => console.log(store.getState()))
-store.dispatch(FETCH_INIT_STATE())
+store.dispatch(fetchInitPosts())
 export default store;
