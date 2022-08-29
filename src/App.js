@@ -10,7 +10,7 @@ function App(props) {
   const count = useSelector(state=> state.count);
   const dispatch = useDispatch();
   return (
-    <div className="App">
+    <div className="App bg-gray-200">
       <Navbar />
       <Newsfeed />
       <button onClick={() => dispatch(increment())}>add</button>

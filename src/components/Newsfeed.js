@@ -15,16 +15,15 @@ export default function Newsfeed() {
           username={post.data.author}
           totalComments={post.data.num_comments}
           upvotes={post.data.ups}
-          imgURL={post.data.thumbnail || ""}
+          imgURL={post.data.thumbnail}
         />
       </li>
 
     )
   })
   return (
-    <div>
-      <h1>Content goes here</h1>
-      <ul className="flex flex-col w-8/12" >
+    <div className="flex justify-center mt-4">
+      <ul className="flex flex-col w-8/12 gap-3" >
         {allPosts}
       </ul>
     </div>
