@@ -2,10 +2,16 @@ import React from "react"
 import { connect, useSelector, useDispatch } from "react-redux";
 import Post from "./Post";
 import { nanoid } from "nanoid";
+import Loadingfeed from "./Loadingfeed";
+
 export default function Newsfeed() {
 
   const posts = useSelector(state=> state.reddit);
-  console.log(posts)
+  const loading = useSelector(state=> state.loading);
+  const allLoadingPosts = new Array(5).fill(0).map(() => {
+    return <li key = {nanoid()}> <Loadingfeed /> </li>
+  })
+
   const allPosts = posts.map((post) => {
     return (
       <li key={nanoid()}>
@@ -18,13 +24,13 @@ export default function Newsfeed() {
           imgURL={post.data.thumbnail}
         />
       </li>
-
     )
   })
+
   return (
     <div className="flex justify-center mt-4">
       <ul className="flex flex-col w-8/12 gap-3" >
-        {allPosts}
+        {loading ? allLoadingPosts : allPosts}
       </ul>
     </div>
   )

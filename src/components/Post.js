@@ -22,7 +22,8 @@ export default function Post(props) {
           {props.title}
         </div>
       </div>
-      {(props.imgURL !== "self") && <img src={props.imgURL} alt="img" className="align-self-end ml-auto w-3/12 rounded-lg"/>}
+      {(props.imgURL !== "self" && props.imgURL !== "spoiler" && props.imgURL !== "nsfw" && props.imgURL !== "default")
+      && <img src={props.imgURL} alt="img" className="align-self-end ml-auto w-3/12 rounded-lg"/>}
     </div>
   )
 }

@@ -13,7 +13,6 @@ function App(props) {
     <div className="App bg-gray-200">
       <Navbar />
       <Newsfeed />
-      <button onClick={() => dispatch(increment())}>add</button>
     </div>
   );
 }

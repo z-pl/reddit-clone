@@ -1,7 +1,8 @@
 import { connect, useSelector, useDispatch } from "react-redux";
-
+import { toggleLoading } from "./loading";
 export function fetchInitPosts() {
   return (dispatch) => {
+    dispatch(toggleLoading())
     console.log("ping")
     const baseUrl = `https://www.reddit.com/r/popular.json`;
     fetch(baseUrl)
@@ -9,6 +10,7 @@ export function fetchInitPosts() {
       .then(payload => {
         const data = payload.data.children
         dispatch({type: "FETCH_INIT_POSTS", data})
+        dispatch(toggleLoading())
       })
 
   }
