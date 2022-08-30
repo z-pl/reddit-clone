@@ -3,7 +3,7 @@ import { connect, useSelector, useDispatch } from "react-redux";
 import Post from "./Post";
 import { nanoid } from "nanoid";
 import Loadingfeed from "./Loadingfeed";
-
+import Sidepanel from "./Sidepanel";
 export default function Newsfeed() {
 
   const posts = useSelector(state=> state.reddit);
@@ -28,8 +28,9 @@ export default function Newsfeed() {
   })
 
   return (
-    <div className="flex justify-center mt-4">
-      <ul className="flex flex-col w-8/12 gap-3" >
+    <div className="flex justify-center mt-4 gap-8">
+      <Sidepanel />
+      <ul className="flex flex-col w-7/12 gap-3" >
         {loading ? allLoadingPosts : allPosts}
       </ul>
     </div>
