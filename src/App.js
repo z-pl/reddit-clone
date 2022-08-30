@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Newsfeed from "./components/Newsfeed";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { increment } from "./redux/count";
-
+import { Routes, Route } from "react-router-dom";
 
 function App(props) {
 
@@ -12,7 +12,9 @@ function App(props) {
   return (
     <div className="App bg-gray-200">
       <Navbar />
-      <Newsfeed />
+      <Routes>
+        <Route exact path="/" element={<Newsfeed />}></Route>
+      </Routes>
     </div>
   );
 }

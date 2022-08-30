@@ -5,21 +5,23 @@ import thunk from "redux-thunk";
 
 import countReducer from "./count";
 import loadingReducer from "./loading";
-import redditReducer from "./redditAPI";
+import redditReducer from "./PostsAPI";
+import subredditReducer from "./subredditAPI";
 
-
-import { fetchInitPosts } from "./redditAPI";
-
+import { fetchInitPosts } from "./PostsAPI";
+import { fetchTopSubReddits } from "./subredditAPI";
 const store = configureStore(
   {
     reducer: {
       count: countReducer,
       loading: loadingReducer,
-      reddit: redditReducer
+      posts: redditReducer,
+      subreddits: subredditReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk)
   }
 )
 store.subscribe(() => console.log(store.getState()))
+store.dispatch(fetchTopSubReddits())
 store.dispatch(fetchInitPosts())
 export default store;

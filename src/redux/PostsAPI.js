@@ -1,6 +1,7 @@
 import { connect, useSelector, useDispatch } from "react-redux";
 import { toggleLoading } from "./loading";
 export function fetchInitPosts() {
+
   return (dispatch) => {
     dispatch(toggleLoading())
     console.log("ping")
@@ -15,6 +16,8 @@ export function fetchInitPosts() {
 
   }
 }
+
+
 
 export default function redditReducer(posts=[], action) {
 

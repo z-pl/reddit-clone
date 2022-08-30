@@ -4,7 +4,7 @@ import { faGlobe, faFire, faFileAlt, faChartBar, faChartLine } from "@fortawesom
 
 export default function FilterPanel() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 pl-4">
       <div className="flex gap-3">
         <FontAwesomeIcon icon={faGlobe} size="xl" className="text-gray-400"/>
         <span>All</span>

@@ -6,7 +6,7 @@ import Loadingfeed from "./Loadingfeed";
 import Sidepanel from "./Sidepanel";
 export default function Newsfeed() {
 
-  const posts = useSelector(state=> state.reddit);
+  const posts = useSelector(state=> state.posts);
   const loading = useSelector(state=> state.loading);
   const allLoadingPosts = new Array(5).fill(0).map(() => {
     return <li key = {nanoid()}> <Loadingfeed /> </li>
