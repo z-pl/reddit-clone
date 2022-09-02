@@ -6,6 +6,7 @@ export function fetchInitPosts() {
     dispatch(toggleLoading())
     console.log("ping")
     const baseUrl = `https://www.reddit.com/r/popular.json`;
+
     fetch(baseUrl)
       .then(res => res.json())
       .then(payload => {
@@ -13,11 +14,8 @@ export function fetchInitPosts() {
         dispatch({type: "FETCH_INIT_POSTS", data})
         dispatch(toggleLoading())
       })
-
   }
 }
-
-
 
 export default function redditReducer(posts=[], action) {
 

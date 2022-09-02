@@ -19,7 +19,7 @@ export default function FeaturedPanel() {
   ]
   const allSubreddits = subreddits.map((subreddit, index) => {
     return (
-      <li ke = {nanoid()} className="flex gap-2">
+      <li key = {nanoid()} className="flex gap-2">
         <img src={imgLinks[index]} alt="img" className="w-2/12 rounded-full"></img>
         <div>
           <p className="m-0 text-sm">r/{subreddit.title}</p>
