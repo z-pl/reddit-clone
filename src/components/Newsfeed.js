@@ -2,7 +2,7 @@ import React from "react"
 import {useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
-import { fetchInitPosts } from "../redux/PostsAPI";
+import { fetchPosts } from "../redux/PostsAPI";
 
 
 import Post from "./Post";
@@ -16,7 +16,7 @@ export default function Newsfeed() {
   const loading = useSelector(state=> state.loading);
 
   React.useEffect(() => {
-    dispatch(fetchInitPosts());
+    dispatch(fetchPosts());
   }, [dispatch])
 
   const allLoadingPosts = new Array(5).fill(0).map(() => {

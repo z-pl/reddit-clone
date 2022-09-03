@@ -8,7 +8,7 @@ import redditReducer from "./PostsAPI";
 import subredditReducer from "./subredditAPI";
 import postThreadReducer from "./Thread";
 
-import { fetchInitPosts } from "./PostsAPI";
+import { fetchPosts } from "./PostsAPI";
 import { fetchTopSubReddits } from "./subredditAPI";
 import { fetchPostThread } from "./Thread"
 const store = configureStore(
@@ -26,6 +26,5 @@ const store = configureStore(
 )
 store.subscribe(() => console.log(store.getState()));
 store.dispatch(fetchTopSubReddits())
-store.dispatch(fetchInitPosts())
-store.dispatch(fetchPostThread("x3pp6a"));
+store.dispatch(fetchPosts())
 export default store;
