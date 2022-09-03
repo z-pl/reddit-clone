@@ -45,14 +45,29 @@ export function fetchFilterPosts(filter) {
   }
 }
 
-export default function redditReducer(posts=[], action) {
+export function fetchSubredditPosts(subreddit) {
+  return (dispatch) => {
+    dispatch(toggleLoading())
+    const baseUrl = `https://www.reddit.com/r/${subreddit}/.json`;
+    fetch(baseUrl)
+    .then(res => res.json())
+    .then(payload => {
+      const data = payload.data.children
+      dispatch({type: "FETCH_SUBREDDIT_POSTS", data})
+      dispatch(toggleLoading())
+    })
+  }
+}
 
+export default function redditReducer(posts=[], action) {
   switch(action.type) {
     case "FETCH_INIT_POSTS":
       return action.data
     case "FETCH_QUERY_POSTS":
       return action.data
     case "FETCH_FILTER_POSTS":
+      return action.data
+    case "FETCH_SUBREDDIT_POSTS":
       return action.data
     default:
       return posts

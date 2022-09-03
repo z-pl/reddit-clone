@@ -1,8 +1,10 @@
 import React from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
-
+import { fetchSubredditPosts } from "../redux/PostsAPI";
+import { Link } from "react-router-dom";
 export default function FeaturedPanel() {
+  const dispatch = useDispatch();
 
   const subreddits = useSelector(state=> state.subreddits);
   const imgLinks = [
@@ -15,17 +17,23 @@ export default function FeaturedPanel() {
     "https://b.thumbs.redditmedia.com/l_LTzMogi2fCDc6oEyijcHr0jVjABp5sjQDDL4QCnNo.png",
     "https://b.thumbs.redditmedia.com/6LXqqT3C0TSzXMKj6t23XDks2cCy8_kuLZ8Gs2129rU.png",
 
-
   ]
+
+  const handleSubredditFilter = (title) => {
+    dispatch(fetchSubredditPosts(title))
+  }
+
   const allSubreddits = subreddits.map((subreddit, index) => {
     return (
-      <li key = {nanoid()} className="flex gap-2">
-        <img src={imgLinks[index]} alt="img" className="w-2/12 rounded-full"></img>
-        <div>
-          <p className="m-0 text-sm">r/{subreddit.title}</p>
-          <p className="m-0 text-xs text-gray-500">{subreddit.subCount} subscribers</p>
-        </div>
-      </li>
+      <Link to="/" key={nanoid()}>
+        <li className="flex gap-2 cursor-pointer" onClick={() => handleSubredditFilter(subreddit.title)}>
+          <img src={imgLinks[index]} alt="img" className="w-2/12 rounded-full"></img>
+          <div>
+            <p className="m-0 text-sm">r/{subreddit.title}</p>
+            <p className="m-0 text-xs text-gray-500">{subreddit.subCount} subscribers</p>
+          </div>
+        </li>
+      </Link>
     )
   })
   return (

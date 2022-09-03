@@ -1,5 +1,10 @@
+import { connect, useSelector, useDispatch } from "react-redux";
+import { toggleLoading } from "./loading";
+
 export function fetchPostThread(postId) {
+
   async function getPostThread(dispatch) {
+    dispatch(toggleLoading());
     const baseUrl = `https://www.reddit.com/${postId}.json`;
     const res = await fetch(baseUrl);
     const resData = await res.json();
@@ -17,6 +22,7 @@ export function fetchPostThread(postId) {
     }
 
     dispatch({type: "FETCH_POST_THREAD", data: data })
+    dispatch(toggleLoading());
   }
   return (dispatch) => {
     getPostThread(dispatch);

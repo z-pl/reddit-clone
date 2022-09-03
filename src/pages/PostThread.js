@@ -4,15 +4,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchPostThread } from "../redux/Thread";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-
+import FeaturedPanel from "../components/FeaturedPanel";
+import AdvertisementPanel from "../components/AdvertisementPanel";
 import Sidepanel from "../components/Sidepanel";
 import Comment from "../components/Comment";
+import { nanoid } from "nanoid";
+import LoadingPost from "../components/LoadingPost";
 
 export default function PostThread() {
 
   const dispatch = useDispatch();
   const { postId } = useParams();
   const postThread = useSelector(state => state.thread);
+  const loading = useSelector(state => state.loading);
+
   React.useEffect(() => {
     dispatch(fetchPostThread(postId))
   },[dispatch, postId])
@@ -22,15 +27,19 @@ export default function PostThread() {
     const getAllComments = () => postThread.comments.map((comment, index) => {
       const data = comment.data;
       return (
-        <Comment username={data.author} content={data.body} upvotes={data.ups} />
+        <Comment key={nanoid()} username={data.author} content={data.body} upvotes={data.ups} />
       )
     })
 
   return (
     <div>
     <div className="flex justify-center mt-4 gap-8">
-      <Sidepanel />
-      <div className="flex flex-col w-7/12 border border-black p-4 gap-6">
+      <div className="w-3/12 flex flex-col gap-4">
+        <FeaturedPanel />
+        <AdvertisementPanel />
+      </div>
+
+      {loading ? <LoadingPost/> : <div className="flex flex-col w-7/12 border bg-white rounded-lg p-4 gap-6">
         <div className="flex gap-2">
           <div className="flex items-center text-zinc-500 bg-gray-300 rounded-lg px-2 text-xs">Home</div>
           <div className="text-gray-500">/</div>
@@ -62,7 +71,7 @@ export default function PostThread() {
             {postThread.length !== 0 && getAllComments()}
           </ul>
         </div>
-      </div>
+      </div>}
     </div>
     </div>
   )

@@ -10,7 +10,6 @@ import postThreadReducer from "./Thread";
 
 import { fetchPosts } from "./PostsAPI";
 import { fetchTopSubReddits } from "./subredditAPI";
-import { fetchPostThread } from "./Thread"
 const store = configureStore(
   {
     reducer: {
