@@ -39,7 +39,7 @@ export default function FeaturedPanel() {
     )
   })
   return (
-    <div>
+    <div className="hidden sm:block">
       {loading ? <LoadingFeatured /> :
       <div className="flex flex-col bg-white px-6 py-4 rounded-md">
         <h2 className="text-xs mb-2 border-b border-gray-400 font-bold pb-1 text-gray-400">FEATURED SUBREDDITS</h2>

@@ -41,9 +41,9 @@ export default function Newsfeed() {
   })
 
   return (
-    <div className="flex justify-center mt-4 gap-8">
+    <div className="flex justify-center mt-4 sm:flex sm:justify-center sm:mt-4 sm:gap-8">
       <Sidepanel />
-      <ul className="flex flex-col w-7/12 gap-3" >
+      <ul className="flex w-full flex-col gap-3 p-4 sm:flex sm:flex-col sm:w-7/12 sm:gap-3">
         {loading ? allLoadingPosts : allPosts}
       </ul>
     </div>
