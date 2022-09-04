@@ -47,14 +47,12 @@ export function fetchFilterPosts(filter) {
 
 export function fetchSubredditPosts(subreddit) {
   return (dispatch) => {
-    dispatch(toggleLoading())
     const baseUrl = `https://www.reddit.com/r/${subreddit}/.json`;
     fetch(baseUrl)
     .then(res => res.json())
     .then(payload => {
       const data = payload.data.children
       dispatch({type: "FETCH_SUBREDDIT_POSTS", data})
-      dispatch(toggleLoading())
     })
   }
 }

@@ -25,5 +25,4 @@ const store = configureStore(
 )
 store.subscribe(() => console.log(store.getState()));
 store.dispatch(fetchTopSubReddits())
-store.dispatch(fetchPosts())
 export default store;

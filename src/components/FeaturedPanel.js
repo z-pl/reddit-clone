@@ -3,10 +3,12 @@ import { connect, useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 import { fetchSubredditPosts } from "../redux/PostsAPI";
 import { Link } from "react-router-dom";
+import LoadingFeatured from "./LoadingFeatured";
 export default function FeaturedPanel() {
   const dispatch = useDispatch();
 
   const subreddits = useSelector(state=> state.subreddits);
+  const loading = useSelector(state=> state.loading);
   const imgLinks = [
     "https://b.thumbs.redditmedia.com/EndDxMGB-FTZ2MGtjepQ06cQEkZw_YQAsOUudpb9nSQ.png",
     "https://styles.redditmedia.com/t5_2qh03/styles/communityIcon_1isvxgkk7hw51.png?width=256&s=b2c4017083ea0176a3dd4837f6e009bbc8384f15",
@@ -37,11 +39,14 @@ export default function FeaturedPanel() {
     )
   })
   return (
-    <div className="flex flex-col bg-white px-6 py-4 rounded-md">
-      <h2 className="text-xs mb-2 border-b border-gray-400 font-bold pb-1 text-gray-400">FEATURED SUBREDDITS</h2>
-      <ul className="flex flex-col gap-4">
-        {allSubreddits}
-      </ul>
+    <div>
+      {loading ? <LoadingFeatured /> :
+      <div className="flex flex-col bg-white px-6 py-4 rounded-md">
+        <h2 className="text-xs mb-2 border-b border-gray-400 font-bold pb-1 text-gray-400">FEATURED SUBREDDITS</h2>
+        <ul className="flex flex-col gap-4">
+          {allSubreddits}
+        </ul>
+      </div>}
     </div>
   )
 }
