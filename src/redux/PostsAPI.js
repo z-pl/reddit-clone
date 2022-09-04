@@ -4,7 +4,6 @@ export function fetchPosts() {
 
   return (dispatch) => {
     dispatch(toggleLoading())
-    console.log("ping")
     const baseUrl = `https://www.reddit.com/r/popular.json`;
 
     fetch(baseUrl)

@@ -8,7 +8,6 @@ export function fetchPostThread(postId) {
     const baseUrl = `https://www.reddit.com/${postId}.json`;
     const res = await fetch(baseUrl);
     const resData = await res.json();
-    console.log(resData)
     const data = {
       subreddit: resData[0].data.children[0].data.subreddit,
       upvotes: resData[0].data.children[0].data.ups,

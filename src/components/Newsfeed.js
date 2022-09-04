@@ -16,8 +16,8 @@ export default function Newsfeed() {
   const loading = useSelector(state=> state.loading);
 
   React.useEffect(() => {
-    dispatch(fetchPosts());
-  }, [dispatch])
+    if (posts.length === 0)dispatch(fetchPosts());
+  }, [])
 
   const allLoadingPosts = new Array(5).fill(0).map(() => {
     return <li key = {nanoid()}> <Loadingfeed /> </li>

@@ -23,6 +23,6 @@ const store = configureStore(
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk)
   }
 )
-store.subscribe(() => console.log(store.getState()));
+//store.subscribe(() => console.log(store.getState()));
 store.dispatch(fetchTopSubReddits())
 export default store;
